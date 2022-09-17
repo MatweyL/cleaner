@@ -1,20 +1,12 @@
-from genericpath import isfile
-import os
-from pathlib import Path
 
 
-class Cleaner:
+from base_cleaner import BaseCleaner
+
+
+class Cleaner(BaseCleaner):
 
     def __init__(self):
+        super().__init__()
+
+    def remove_except(path, *obj_names):
         pass
-
-    def is_correct_path(self, path):
-        """User must type only absolute paths"""
-        return Path(path).is_absolute()
-
-    def is_file(self, path):
-        return os.path.isfile(path)
-
-    def remove_file(self, path):
-        os.remove(path)
-
