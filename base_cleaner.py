@@ -32,3 +32,14 @@ class BaseCleaner:
             print(f"removed dir {path}")
         except BaseException as e:
             pass
+
+    def get_objects_will_be_removed(self, path, recursive):
+        objects_to_remove = []
+        objs = os.listdir(path)
+        for obj in objs:
+            path_to_obj = f"{path}/{obj}"
+            objects_to_remove.append(path_to_obj)
+            if not self.is_file(path_to_obj) and recursive:
+                objects_to_remove.extend(self.get_objects_will_be_removed(path_to_obj, recursive=recursive))
+        return objects_to_remove
+
