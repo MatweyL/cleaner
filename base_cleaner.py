@@ -16,6 +16,7 @@ class BaseCleaner:
 
     def remove_file(self, path):
         os.remove(path)
+        print(f"removed {path}")
 
     def remove_dir(self, path, recursive=False):
         """recursive files and folders deletion"""
@@ -24,7 +25,6 @@ class BaseCleaner:
             path_to_obj = f"{path}/{obj}"
             if self.is_file(path_to_obj):
                 self.remove_file(path_to_obj)
-                print(f"removed {path_to_obj}")
             elif recursive:
                 self.remove_dir(path_to_obj, recursive=recursive)
         try:
