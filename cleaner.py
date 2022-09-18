@@ -7,9 +7,9 @@ class Cleaner(BaseCleaner):
         super().__init__()
 
     def clean(self):
-        path = input("path: ")
+        path = input("path: ").strip()
         if not self.is_correct_path(path):
-            print("path: {path} is not absolute")
+            print(f"path: {path} is not absolute")
         else:
             if self.is_file(path):
                 print(f"file {path} will be removed")

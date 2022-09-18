@@ -38,8 +38,10 @@ class BaseCleaner:
         objs = os.listdir(path)
         for obj in objs:
             path_to_obj = f"{path}/{obj}"
-            objects_to_remove.append(path_to_obj)
-            if not self.is_file(path_to_obj) and recursive:
+            if self.is_file(path_to_obj):
+                objects_to_remove.append(path_to_obj)
+            elif not self.is_file(path_to_obj) and recursive:
+                objects_to_remove.append(path_to_obj)
                 objects_to_remove.extend(self.get_objects_will_be_removed(path_to_obj, recursive=recursive))
         return objects_to_remove
 
